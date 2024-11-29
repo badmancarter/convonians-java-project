@@ -12,10 +12,10 @@ pipeline {
                 sh 'cd SampleWebApp && mvn test'
             }
         }        
-        
-        stage('Deploy to Tomcat server') {
+        stage('Deploy') {
             steps {
-                    deploy adapters: [tomcat9(credentialsId: 'tompass', path: '', url: 'http://54.197.208.143:8080/')], contextPath: 'myapp', war: '**/.war'            }
+                deploy adapters: [tomcat9(credentialsId: 'tompass', url: 'http://54.197.208.143:8080/')], contextPath: 'myapp', war: '**/*.war'
+            }
         }
     }
 }
